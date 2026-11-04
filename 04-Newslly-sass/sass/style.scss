@@ -1,0 +1,286 @@
+@use 'sass:math';
+
+$color-text: #888;
+$color-main: #202124;
+$color-accent: #fa6980;
+$color-bg: #f6f6f6;
+$color-label: #bbb;
+$font-family-base: Helvetica,
+    Arial,
+    sans-serif;
+
+// 引数はよくわかるものを最初に設定する
+
+@mixin inner($mw: 800px, $w: 88%) {
+    max-width: $mw;
+    width: $w;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@mixin title-main {
+    margin-bottom: 30px;
+    padding-left: 10px;
+    border-left: 10px solid $color-accent;
+    color: $color-main;
+    font-size: clamp(rem(18), 3vw, rem(24));
+    font-weight: bold;
+    line-height: math.div(31, 24);
+    text-transform: uppercase;
+}
+
+
+$font-size-base: 16;
+
+@function rem($px-value) {
+    @return #{math.div($px-value, $font-size-base)}rem;
+}
+
+@function em($px-value, $font-size-self: 16) {
+    @return #{math.div($px-value,$font-size-self)}em;
+}
+
+@function ls($xd-value) {
+    @return #{math.div($xd-value,1000)}em;
+}
+
+@function pct($target-px, $parent-px) {
+    @return math.percentage(math.div($target-px, $parent-px));
+}
+
+
+
+
+body {
+    color: $color-text;
+    font-size: rem(14);
+    font-family: $font-family-base;
+    line-height: math.div(24, 14);
+    letter-spacing: ls(50);
+
+    img {
+        max-width: 100%;
+        height: auto;
+        vertical-align: bottom;
+    }
+}
+
+// .title {
+//     color: $color-main;
+// }
+
+// .btn {
+//     background-color: $color-accent;
+//     color: #fff;
+//     transition: .3s;
+
+//     &:hover {
+//         background-color: $color-main;
+//     }
+// }
+
+.header {
+    padding: rem(30) 0 rem(60);
+    text-align: center;
+
+    &__inner {
+        @include inner();
+    }
+}
+
+.footer {
+    padding: rem(100) 0 rem(40);
+    background-color: $color-main;
+
+    &__inner {
+        @include inner();
+    }
+
+    small {
+        font-size: rem(12);
+        color: #fff;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* modules
+------------------------------ */
+/* post */
+.post {
+
+
+    &__category {
+        margin-bottom: rem(10);
+        color: $color-accent;
+        font-size: rem(12);
+        font-style: oblique;
+        text-transform: uppercase;
+    }
+
+    &__title {
+        margin-bottom: rem(15);
+        color: $color-main;
+        font-size: rem(18);
+        font-weight: bold;
+        line-height: 1.3;
+    }
+
+}
+
+/* card */
+.card {
+    background-color: #fff;
+
+
+    &__body {
+        padding: rem(35);
+    }
+
+    &__title {
+        margin-bottom: rem(15);
+        color: $color-main;
+        font-size: rem(18);
+        font-weight: bold;
+        line-height: math.div(23, 18);
+    }
+
+}
+
+/* time */
+.time {
+    margin-top: 20px;
+    padding-left: 26px;
+    color: $color-label;
+    font-size: 12px;
+    background: url(../images/icon_time.png) no-repeat left center;
+}
+
+/* btn */
+.btn {
+    display: block;
+    width: em(12, 200);
+    margin-top: rem(25);
+    margin-left: auto;
+    padding: 14px;
+    background-color: $color-accent;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+
+    &:hover {
+        background-color: $color-main;
+    }
+
+    &.btn--about {
+        background-color: $color-main;
+    }
+
+}
+
+
+/* index.html
+------------------------------ */
+
+.news {
+
+    margin-bottom: 60px;
+
+
+    &__inner {
+        @include inner();
+    }
+
+    &__title {
+        @include title-main();
+    }
+
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: rem(60) percentage(math.div(40, 800));
+    }
+}
+
+.trending {
+    padding: 60px 0;
+    background-color: $color-bg;
+
+
+
+    &__inner {
+        @include inner();
+    }
+
+    &__title {
+        @include title-main();
+    }
+
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 60px percentage(math.div(40, 800));
+    }
+}
+
+/* about.html
+------------------------------ */
+
+.up {
+    padding: 60px 0;
+
+
+    &__inner {
+        @include inner();
+    }
+
+    &__title {
+        @include title-main();
+    }
+
+    &__list {
+        display: grid;
+        grid-template-columns: 1fr;
+        row-gap: 40px;
+    }
+
+    &__item {
+        .post__title {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #DDDDDD;
+        }
+    }
+
+}
+
+.discovery {
+    padding: 60px 0;
+    background-color: $color-bg;
+
+
+    &__inner {
+        @include inner();
+    }
+
+    &__title {
+        @include title-main();
+    }
+
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 40px;
+    }
+}
