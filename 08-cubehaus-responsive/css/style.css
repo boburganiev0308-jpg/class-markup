@@ -1,0 +1,226 @@
+.u-show-sp {
+  display: block;
+}
+@media (width >= 700px) {
+  .u-show-sp {
+    display: none;
+  }
+}
+
+.card {
+  display: grid;
+  grid-auto-flow: row;
+  row-gap: 1.5rem;
+}
+.card__title {
+  font-family: "Helvetica Neue", Arial, "Yu Gothic", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  font-size: 1.125rem;
+  font-weight: bold;
+  line-height: 1.7222222222;
+}
+
+body {
+  color: #000000;
+  font-family: "Helvetica Neue", Arial, "Yu Gothic", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  line-height: 2.4285714286;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+}
+
+.header {
+  padding: 3rem 0;
+}
+.header__inner {
+  max-width: 1000px;
+  width: 83%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__logo a {
+  font-size: 1.5rem;
+  color: #2F2F2F;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  line-height: 1.2083333333;
+}
+
+.gnav__list {
+  display: grid;
+  grid-auto-flow: column;
+  -moz-column-gap: 2rem;
+       column-gap: 2rem;
+}
+.gnav__link {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+.gnav__link:hover {
+  color: #e40065;
+}
+
+.footer {
+  background-color: #2F2F2F;
+  padding: 5rem 0;
+}
+.footer__inner {
+  max-width: 1000px;
+  width: 83%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.footer__copyright {
+  color: #ffffff;
+  text-align: center;
+}
+
+.hero__inner {
+  max-width: 1000px;
+  width: 83%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.philosophy__inner {
+  max-width: 1000px;
+  width: 83%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5rem;
+  margin-bottom: 7.75rem;
+}
+.philosophy__title {
+  letter-spacing: 0.05em;
+  line-height: 1.6875;
+  color: #000000;
+  margin-bottom: 4rem;
+  text-align: center;
+  font-family: "Helvetica Neue", Arial, "Yu Gothic", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+}
+.philosophy__title::after {
+  content: "";
+  display: block;
+  width: 6.25rem;
+  height: 0.125rem;
+  background-color: #e40065;
+  margin: 1.5rem auto 0;
+}
+.philosophy__text {
+  text-align: center;
+  text-wrap: pretty;
+}
+@media (width >= 700px) {
+  .philosophy__text {
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+}
+
+.achievement {
+  padding: 7.75rem 0;
+  background-color: #F4F4F4;
+}
+.achievement__inner {
+  max-width: 1000px;
+  width: 83%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.achievement__title {
+  letter-spacing: 0.05em;
+  line-height: 1.6875;
+  color: #000000;
+  margin-bottom: 4rem;
+  text-align: center;
+  font-family: "Helvetica Neue", Arial, "Yu Gothic", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+}
+.achievement__title::after {
+  content: "";
+  display: block;
+  width: 6.25rem;
+  height: 0.125rem;
+  background-color: #e40065;
+  margin: 1.5rem auto 0;
+}
+.achievement__list {
+  display: grid;
+  row-gap: 4rem;
+}
+@media (width >= 700px) {
+  .achievement__list {
+    grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
+    gap: 3.125rem;
+  }
+}
+
+.schedule {
+  padding: 7.75rem 0;
+}
+.schedule__inner {
+  max-width: 1000px;
+  width: 83%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.schedule__title {
+  letter-spacing: 0.05em;
+  line-height: 1.6875;
+  color: #000000;
+  margin-bottom: 4rem;
+  text-align: center;
+  font-family: "Helvetica Neue", Arial, "Yu Gothic", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+}
+.schedule__title::after {
+  content: "";
+  display: block;
+  width: 6.25rem;
+  height: 0.125rem;
+  background-color: #e40065;
+  margin: 1.5rem auto 0;
+}
+@media (width >= 963px) {
+  .schedule__note {
+    display: none;
+  }
+}
+.schedule__note {
+  margin-top: 1.5rem;
+}
+.schedule__scroll {
+  padding-bottom: 0.5rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 49.9375rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.schedule__table {
+  width: 100%;
+  min-width: 49.9375rem;
+  border-collapse: collapse;
+}
+.schedule__table th {
+  background-color: #EDEFF2;
+}
+.schedule__table th,
+.schedule__table td {
+  border: 1px solid #707070;
+  white-space: nowrap;
+  text-align: center;
+  color: #404040;
+  padding: 0.9375rem 3.75rem;
+}/*# sourceMappingURL=style.css.map */

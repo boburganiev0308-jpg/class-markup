@@ -1,0 +1,295 @@
+@use "sass:math";
+@use "sass:map";
+
+// --- Variables ---
+
+// Colors
+$color-text: #000000;
+$color-main: #2F2F2F;
+$color-tabletext: #404040;
+$color-base: #ffffff;
+$color-accent: #e40065;
+$color-bg: #F4F4F4;
+$color-bg-table: #EDEFF2;
+$color-br-table: #707070;
+// Typography
+$font-size-base: 16;
+$font-family-gothic: "Helvetica Neue", Arial, "Yu Gothic", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+$font-family-mincho: "Times New Roman", Times, "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;
+
+// Breakpoints
+$breakpoints: (
+    "sm": 640px,
+    // 大型スマホ〜小型タブレット
+    "md": 700px,
+    // 一般的なタブレット
+    "lg": 1024px,
+    // ノートPC・デスクトップ
+    "xl": 1280px,
+    // 大型ディスプレイ
+    "table": 963px // 大型ディスプレイ
+);
+
+// --- Functions ---
+
+// pxをemに変換
+@function em($px-value, $font-size-self: 16) {
+    @return #{math.div($px-value, $font-size-self)}em;
+}
+
+
+// pxをremに変換
+@function rem($px-value) {
+    @return #{math.div($px-value, $font-size-base)}rem;
+}
+
+// XD/Figmaのトラッキング値をemに変換
+@function ls($xd-value) {
+    @return #{math.div($xd-value, 1000)}em;
+}
+
+// 親要素の幅に対する「%」を自動計算
+@function pct($target-px, $parent-px) {
+    @return math.percentage(math.div($target-px, $parent-px));
+}
+
+// --- Mixins ---
+
+// メディアクエリ（モバイルファースト）
+@mixin mq($breakpoint: md) {
+    $width: map.get($breakpoints, $breakpoint);
+
+    @media (width >=$width) {
+        @content;
+    }
+}
+
+// インナーコンテナ幅の指定
+@mixin inner($mw: 1000px, $w: 83%) {
+    max-width: $mw;
+    width: $w;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@mixin section-title {
+
+    letter-spacing: ls(50);
+    line-height: math.div(54, 32);
+    color: $color-text;
+    margin-bottom: rem(64);
+    text-align: center;
+
+    font: {
+        family: $font-family-gothic;
+        size: rem(32);
+        weight: bold;
+    }
+
+    &::after {
+        content: "";
+        display: block;
+        width: rem(100);
+        height: rem(2);
+        background-color: $color-accent;
+        margin: rem(24) auto 0;
+    }
+}
+
+.u-show-sp {
+    display: block;
+
+    @include mq() {
+        display: none;
+    }
+}
+
+// Modules
+
+.card {
+    display: grid;
+    grid-auto-flow: row;
+    row-gap: rem(24);
+
+    &__title {
+
+        font: {
+            family: $font-family-gothic;
+            size: rem(18);
+            weight: bold;
+        }
+
+        line-height: math.div(31, 18);
+    }
+}
+
+body {
+    color: $color-text;
+    font-family: $font-family-gothic;
+    line-height: math.div(34, 14);
+    font-size: rem(14);
+    letter-spacing: ls(50);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: bottom;
+}
+
+.header {
+    padding: rem(48) 0;
+
+    &__inner {
+        @include inner();
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__logo a {
+        font-size: rem(24);
+        color: $color-main;
+        font-weight: bold;
+        letter-spacing: ls(100);
+        line-height: math.div(29, 24);
+    }
+}
+
+.gnav {
+    &__list {
+        display: grid;
+        grid-auto-flow: column;
+        column-gap: rem(32);
+    }
+
+    &__link {
+        font-size: rem(12);
+        text-transform: uppercase;
+
+        &:hover {
+            color: $color-accent;
+        }
+    }
+}
+
+.footer {
+    background-color: $color-main;
+    padding: rem(80) 0;
+
+    &__inner {
+        @include inner();
+    }
+
+    &__copyright {
+        color: $color-base;
+        text-align: center;
+    }
+
+}
+
+.hero {
+    &__inner {
+        @include inner();
+    }
+
+}
+
+.philosophy {
+    &__inner {
+        @include inner();
+        margin-top: rem(80);
+        margin-bottom: rem(124);
+    }
+
+    &__title {
+        @include section-title;
+    }
+
+    &__text {
+        text-align: center;
+        text-wrap: pretty;
+
+        @include mq() {
+            word-break: keep-all;
+            overflow-wrap: break-word;
+        }
+    }
+
+}
+
+.achievement {
+    padding: rem(124) 0;
+    background-color: $color-bg;
+
+    &__inner {
+        @include inner();
+    }
+
+    &__title {
+        @include section-title;
+    }
+
+    &__list {
+        display: grid;
+        row-gap: rem(64);
+
+        @include mq() {
+            grid-template-columns: repeat(auto-fit, minmax(rem(300), 1fr));
+            gap: rem(50);
+        }
+    }
+}
+
+
+
+.schedule {
+    padding: rem(124) 0;
+
+    &__inner {
+        @include inner();
+    }
+
+    &__title {
+        @include section-title;
+    }
+
+    &__note {
+        @include mq(table) {
+            display: none;
+        }
+
+        margin-top: rem(24);
+    }
+
+    &__scroll {
+        padding-bottom: rem(8);
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        max-width: rem(799);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    &__table {
+        width: 100%;
+        min-width: rem(799);
+        border-collapse: collapse;
+
+        th {
+            background-color: $color-bg-table;
+        }
+
+        th,
+        td {
+            border: 1px solid $color-br-table;
+            white-space: nowrap;
+            text-align: center;
+            color: $color-tabletext;
+            padding: rem(15) rem(60);
+        }
+    }
+
+
+}
