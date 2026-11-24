@@ -1,0 +1,364 @@
+@use "sass:math";
+@use "sass:map";
+
+// --- Variables ---
+
+// Colors
+$color-text: #244D4D;
+$color-base: #ffffff;
+$color-main: #244D4D;
+$color-accent: #D6C4B8;
+$color-bg: #F4F4F4;
+
+// Typography
+$font-size-base: 16;
+$font-family-gothic: "Gill Sans", "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+$font-family-mincho: "Times New Roman", Times, "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;
+
+// Breakpoints
+$breakpoints: (
+    "sm": 640px,
+    // 大型スマホ〜小型タブレット
+    "md": 740px,
+    // 一般的なタブレット
+    "lg": 1024px,
+    // ノートPC・デスクトップ
+    "xl": 1440px // 大型ディスプレイ
+);
+
+// --- Functions ---
+
+// pxをemに変換
+@function em($px-value, $font-size-self: 16) {
+    @return #{math.div($px-value, $font-size-self)}em;
+}
+
+
+// pxをremに変換
+@function rem($px-value) {
+    @return #{math.div($px-value, $font-size-base)}rem;
+}
+
+// XD/Figmaのトラッキング値をemに変換
+@function ls($xd-value) {
+    @return #{math.div($xd-value, 1000)}em;
+}
+
+// 親要素の幅に対する「%」を自動計算
+@function pct($target-px, $parent-px) {
+    @return math.percentage(math.div($target-px, $parent-px));
+}
+
+// --- Mixins ---
+
+// メディアクエリ（モバイルファースト）
+@mixin mq($breakpoint: md) {
+    $width: map.get($breakpoints, $breakpoint);
+
+    @media (width >=$width) {
+        @content;
+    }
+}
+
+// インナーコンテナ幅の指定
+@mixin inner($mw: 1000px, $w: 86%) {
+    max-width: $mw;
+    width: $w;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+// modules
+
+.intro {
+
+    &__title {
+        font-size: rem(48);
+        font-weight: bold;
+        margin-bottom: rem(25);
+        line-height: math.div(58, 48);
+    }
+
+}
+
+.post {
+    display: grid;
+    gap: rem(20);
+
+    @container(width >=400px) {
+        grid-template-columns: 200fr 250fr;
+        align-items: start;
+    }
+
+
+    &__title {
+        font-size: rem(24);
+        font-size: bold;
+        margin-bottom: rem(25);
+        line-height: math.div(29, 24);
+    }
+
+    &__pic {
+        img {
+            width: 100%;
+        }
+    }
+}
+
+
+.card {
+    position: relative;
+    padding: rem(45);
+    background-color: $color-bg;
+    text-align: center;
+
+    &__cart {
+        position: absolute;
+        top: rem(-15);
+        right: rem(15);
+    }
+}
+
+
+body {
+    font: {
+        size: rem(16);
+        family: $font-family-gothic;
+    }
+
+    line-height: math.div(27, 16);
+    color: $color-main;
+    letter-spacing: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: bottom;
+}
+
+
+.header {
+
+    padding: rem(40) 0;
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.6);
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+
+    &__inner {
+        @include inner();
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__logo-link {
+        font-weight: bold;
+        font-size: rem(26);
+        line-height: 1;
+    }
+}
+
+.gnav {
+    &__list {
+        display: grid;
+        grid-auto-flow: column;
+        column-gap: rem(30);
+    }
+
+    &__link {
+        position: relative;
+        text-decoration: none;
+
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: rem(-4);
+            right: 0;
+
+            width: 100%;
+            height: rem(1.4);
+            background-color: $color-main;
+
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        &:hover::after {
+            transform: scaleX(1);
+        }
+
+
+
+
+
+        // transition: border-bottom 0.3s ease;
+
+        // &:hover {
+        //     border-bottom: 1px solid $color-main;
+        // }
+    }
+}
+
+.hero {
+    background: url(../images/bg_hero.png) no-repeat center/cover;
+
+    &__inner {
+        @include inner();
+        padding: rem(250) 0 rem(140);
+
+        .intro {
+            display: block;
+            width: rem(480);
+            height: rem(372);
+            background-color: rgba(255, 255, 255, 0.6);
+            padding: rem(65) rem(60);
+        }
+    }
+
+    &__sns {
+        .sns__list {
+            position: fixed;
+            bottom: rem(50);
+            left: rem(1350);
+            width: 100%;
+            z-index: 9999;
+            display: grid;
+            grid-template-rows: 1fr;
+            row-gap: rem(26);
+        }
+    }
+}
+
+.about {
+
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(rem(300), 1fr));
+        gap: rem(50);
+        margin-bottom: rem(60);
+    }
+
+    &__item {
+        container-type: inline-size;
+    }
+
+    &__inner {
+        padding: rem(96) 0;
+
+        @include mq() {
+            padding: rem(120) 0;
+        }
+
+        @include inner();
+
+        .intro {
+            text-align: center;
+            margin-bottom: rem(50);
+        }
+    }
+
+    &__btn {
+        display: block;
+        width: rem(165);
+        padding: rem(18) rem(40);
+        background-color: $color-bg;
+        border-radius: rem(10);
+        text-align: center;
+        margin: 0 auto;
+
+        transition: transform 0.3s ease, opacity 0.3s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+            opacity: 0.75;
+        }
+    }
+
+
+    // @include mq() {
+    //     grid-template-columns: repeat(2, 470fr);
+    //     gap: rem(60);
+    // }
+}
+
+
+
+.product {
+
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(2, 300fr);
+        gap: rem(40) rem(35);
+
+        @include mq() {
+            grid-template-columns: repeat(3, 300fr);
+            gap: rem(50) rem(35);
+        }
+    }
+
+    &__title {
+        text-align: center;
+        font-size: rem(48);
+        font-weight: bold;
+        margin-bottom: rem(25);
+        line-height: math.div(58, 48);
+    }
+
+    &__inner {
+        @include inner();
+    }
+
+
+    .filter__list {
+        display: flex;
+        justify-content: center;
+        gap: rem(30);
+        margin-bottom: rem(35);
+
+        a {
+            @extend .gnav__link;
+        }
+    }
+}
+
+.information {
+
+    &__title {
+        @extend .product__title;
+        margin-bottom: rem(50);
+    }
+
+    &__inner {
+        padding: rem(96) 0;
+
+        @include mq() {
+            padding: rem(120) 0;
+        }
+
+        @include inner();
+    }
+}
+
+.footer {
+    background-color: $color-main;
+
+    &__inner {
+        text-align: center;
+        color: $color-base;
+        padding: rem(80) 0;
+        @include inner();
+    }
+
+    &__title {
+        font-size: rem(24);
+        font-weight: bold;
+        line-height: math.div(29, 24);
+        margin-bottom: rem(25);
+    }
+
+}

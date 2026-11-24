@@ -1,0 +1,239 @@
+.intro__title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1.5625rem;
+  line-height: 1.2083333333;
+}
+
+.post {
+  display: grid;
+  gap: 1.25rem;
+}
+@container (width >=400px) {
+  .post {
+    grid-template-columns: 200fr 250fr;
+    align-items: start;
+  }
+}
+.post__title {
+  font-size: 1.5rem;
+  font-size: bold;
+  margin-bottom: 1.5625rem;
+  line-height: 1.2083333333;
+}
+.post__pic img {
+  width: 100%;
+}
+
+.card {
+  position: relative;
+  padding: 2.8125rem;
+  background-color: #F4F4F4;
+  text-align: center;
+}
+.card__cart {
+  position: absolute;
+  top: -0.9375rem;
+  right: 0.9375rem;
+}
+
+body {
+  font-size: 1rem;
+  font-family: "Gill Sans", "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+  line-height: 1.6875;
+  color: #244D4D;
+  letter-spacing: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+}
+
+.header {
+  padding: 2.5rem 0;
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.6);
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+}
+.header__inner {
+  max-width: 1000px;
+  width: 86%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__logo-link {
+  font-weight: bold;
+  font-size: 1.625rem;
+  line-height: 1;
+}
+
+.gnav__list {
+  display: grid;
+  grid-auto-flow: column;
+  -moz-column-gap: 1.875rem;
+       column-gap: 1.875rem;
+}
+.gnav__link, .product .filter__list a {
+  position: relative;
+  text-decoration: none;
+}
+.gnav__link::after, .product .filter__list a::after {
+  content: "";
+  position: absolute;
+  bottom: -0.25rem;
+  right: 0;
+  width: 100%;
+  height: 0.0875rem;
+  background-color: #244D4D;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+.gnav__link:hover::after, .product .filter__list a:hover::after {
+  transform: scaleX(1);
+}
+
+.hero {
+  background: url(../images/bg_hero.png) no-repeat center/cover;
+}
+.hero__inner {
+  max-width: 1000px;
+  width: 86%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15.625rem 0 8.75rem;
+}
+.hero__inner .intro {
+  display: block;
+  width: 30rem;
+  height: 23.25rem;
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 4.0625rem 3.75rem;
+}
+.hero__sns .sns__list {
+  position: fixed;
+  bottom: 3.125rem;
+  left: 84.375rem;
+  width: 100%;
+  z-index: 9999;
+  display: grid;
+  grid-template-rows: 1fr;
+  row-gap: 1.625rem;
+}
+
+.about__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
+  gap: 3.125rem;
+  margin-bottom: 3.75rem;
+}
+.about__item {
+  container-type: inline-size;
+}
+.about__inner {
+  padding: 6rem 0;
+}
+@media (width >= 740px) {
+  .about__inner {
+    padding: 7.5rem 0;
+  }
+}
+.about__inner {
+  max-width: 1000px;
+  width: 86%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.about__inner .intro {
+  text-align: center;
+  margin-bottom: 3.125rem;
+}
+.about__btn {
+  display: block;
+  width: 10.3125rem;
+  padding: 1.125rem 2.5rem;
+  background-color: #F4F4F4;
+  border-radius: 0.625rem;
+  text-align: center;
+  margin: 0 auto;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.about__btn:hover {
+  transform: translateY(-5px);
+  opacity: 0.75;
+}
+
+.product__list {
+  display: grid;
+  grid-template-columns: repeat(2, 300fr);
+  gap: 2.5rem 2.1875rem;
+}
+@media (width >= 740px) {
+  .product__list {
+    grid-template-columns: repeat(3, 300fr);
+    gap: 3.125rem 2.1875rem;
+  }
+}
+.product__title, .information__title {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1.5625rem;
+  line-height: 1.2083333333;
+}
+.product__inner {
+  max-width: 1000px;
+  width: 86%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.product .filter__list {
+  display: flex;
+  justify-content: center;
+  gap: 1.875rem;
+  margin-bottom: 2.1875rem;
+}
+.information__title {
+  margin-bottom: 3.125rem;
+}
+.information__inner {
+  padding: 6rem 0;
+}
+@media (width >= 740px) {
+  .information__inner {
+    padding: 7.5rem 0;
+  }
+}
+.information__inner {
+  max-width: 1000px;
+  width: 86%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer {
+  background-color: #244D4D;
+}
+.footer__inner {
+  text-align: center;
+  color: #ffffff;
+  padding: 5rem 0;
+  max-width: 1000px;
+  width: 86%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.footer__title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1.2083333333;
+  margin-bottom: 1.5625rem;
+}/*# sourceMappingURL=style.css.map */
